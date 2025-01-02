@@ -1,0 +1,3 @@
+os:
+  editCommand: "nvr"
+  editCommandTemplate: "{{editor}} --remote-wait-silent '{{filename}}'"
