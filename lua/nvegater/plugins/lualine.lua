@@ -59,6 +59,13 @@ return {
 					{
 						"filename",
 						path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+						file_status = true, -- displays file status (readonly status, modified status)
+						shorting_target = 40, -- shortens path to leave 40 spaces
+						symbols = {
+							modified = "[+]", -- Text to show when the file is modified.
+							readonly = "[-]", -- Text to show when the file is non-modifiable or readonly.
+							unnamed = "[No Name]", -- Text to show for unnamed buffers.
+						},
 					},
 				},
 				lualine_x = {
