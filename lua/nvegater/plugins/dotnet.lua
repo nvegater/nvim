@@ -44,6 +44,7 @@ return {
 			"Issafalcon/neotest-dotnet",
 			"nvim-lua/plenary.nvim",
 			"antoinemadec/FixCursorHold.nvim",
+			"nvim-neotest/nvim-nio",  -- Added this line
 		},
 		config = function()
 			require("neotest").setup({
