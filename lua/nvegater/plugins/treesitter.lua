@@ -52,10 +52,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "<A-Up>", -- Alt + up
-					node_incremental = "<A-Up>", -- Alt + up
-					scope_incremental = "<A-S-Up>", -- Alt + Shift + up
-					node_decremental = "<A-Down>", -- Alt + down
+					init_selection = "∑", -- Alt + w
+					node_incremental = "∑", -- Alt + w
+					scope_incremental = "∑", -- Alt + w
+					node_decremental = "‰", -- Alt + Shift + w
 				},
 			},
 		})
