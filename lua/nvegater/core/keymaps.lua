@@ -30,3 +30,12 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 -- Convert tabs to splits
 keymap.set("n", "<leader>th", "<cmd>tab split | tabclose #<CR>", { desc = "Convert next tab to horizontal split" })
 keymap.set("n", "<leader>tv", "<cmd>vert tab split | tabclose #<CR>", { desc = "Convert next tab to vertical split" })
+
+-- Delete without yanking (black hole register)
+keymap.set("n", "<leader>dw", '"_dw', { desc = "Delete word forward without yanking" })
+keymap.set("n", "<leader>de", '"_de', { desc = "Delete word to end without yanking" })
+keymap.set("n", "<leader>db", '"_db', { desc = "Delete word backward without yanking" })
+keymap.set("n", "<leader>diw", '"_diw', { desc = "Delete inner word without yanking" })
+keymap.set("n", "<leader>daw", '"_daw', { desc = "Delete a word without yanking" })
+keymap.set("n", "<leader>dd", '"_dd', { desc = "Delete line without yanking" })
+keymap.set("v", "<leader>d", '"_d', { desc = "Delete selection without yanking" })
