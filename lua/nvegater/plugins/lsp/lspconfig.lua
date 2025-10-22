@@ -140,7 +140,7 @@ return {
 		})
 
 		-- configure other common servers
-		local servers = { "ts_ls", "html", "cssls", "pyright", "gopls", "csharp_ls", "prismals" }
+		local servers = { "ts_ls", "html", "cssls", "pyright", "gopls", "prismals" }
 		for _, server in ipairs(servers) do
 			lspconfig[server].setup({
 				capabilities = capabilities,

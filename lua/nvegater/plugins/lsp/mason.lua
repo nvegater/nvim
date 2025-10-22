@@ -38,7 +38,6 @@ return {
 				"emmet_ls",
 				"prismals",
 				"pyright",
-				"csharp_ls",
 				"gopls", -- Go language server
 			},
 		})
