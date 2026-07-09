@@ -26,6 +26,20 @@ return {
       map("n", "<leader>hS", gs.stage_buffer, "Stage buffer")
       map("n", "<leader>hR", gs.reset_buffer, "Reset buffer")
 
+      -- IntelliJ-style rollback: discard ALL changes to this file, staged and unstaged
+      map("n", "<leader>hX", function()
+        local file = vim.fn.expand("%:p")
+        if vim.fn.confirm("Discard ALL changes to " .. vim.fn.expand("%:t") .. " (staged + unstaged)?", "&Yes\n&No", 2) ~= 1 then
+          return
+        end
+        local out = vim.fn.system({ "git", "-C", vim.fn.expand("%:p:h"), "restore", "--staged", "--worktree", "--", file })
+        if vim.v.shell_error ~= 0 then
+          vim.notify("git restore failed: " .. out, vim.log.levels.ERROR)
+          return
+        end
+        vim.cmd("edit!")
+      end, "Rollback file to HEAD (staged + unstaged)")
+
       map("n", "<leader>hu", gs.undo_stage_hunk, "Undo stage hunk")
 
       map("n", "<leader>hp", gs.preview_hunk, "Preview hunk")

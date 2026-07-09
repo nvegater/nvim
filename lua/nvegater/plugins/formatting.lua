@@ -21,6 +21,13 @@ return {
         lua = { "stylua" },
         python = { "isort", "black" },
       },
+      -- Only run prettier in projects that opted into it (a .prettierrc-style
+      -- config or a "prettier" key in package.json). In projects without one
+      -- (e.g. m7), saving falls back to the LSP formatter — for TypeScript
+      -- that is tsserver, the same engine as VSCode's default formatter.
+      formatters = {
+        prettier = { require_cwd = true },
+      },
       format_on_save = {
         lsp_fallback = true,
         async = false,

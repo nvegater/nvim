@@ -59,5 +59,7 @@ return {
 		keymap.set("n", "<leader>gc", "<cmd>Neogit commit<CR>", { desc = "Open Neogit commit" })
 		keymap.set("n", "<leader>gpl", "<cmd>Neogit pull<CR>", { desc = "Neogit pull" })
 		keymap.set("n", "<leader>gps", "<cmd>Neogit push<CR>", { desc = "Neogit push" })
+		keymap.set("n", "<leader>gf", "<cmd>Neogit fetch<CR>", { desc = "Neogit fetch" })
+		keymap.set("n", "<leader>gm", "<cmd>Neogit merge<CR>", { desc = "Neogit merge" })
 	end,
 }

@@ -5,6 +5,7 @@ return {
 	opts = {
 		options = {
 			mode = "tabs",
+			numbers = "ordinal",
 			name_formatter = function(buf)
 				local path = vim.fn.fnamemodify(buf.path, ":~:.")
 				-- If the path is too long, show the last parts

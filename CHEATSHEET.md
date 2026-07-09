@@ -105,8 +105,10 @@
 | `Space tn` | Normal | Next tab **(IJ: Alt+Right)** |
 | `Space tp` | Normal | Previous tab **(IJ: Alt+Left)** |
 | `Space tf` | Normal | Open current buffer in new tab |
+| `Space t1`…`Space t9` | Normal | Go to tab 1–9 |
 | `Space th` | Normal | Convert tab to horizontal split |
 | `Space tv` | Normal | Convert tab to vertical split |
+| `Space tw` | Normal | Open Warp tab in cwd |
 
 ## Line Movement
 
@@ -125,6 +127,9 @@
 | `Space gc` | Normal | Open Neogit commit **(IJ: Ctrl+K)** |
 | `Space gpl` | Normal | Git pull |
 | `Space gps` | Normal | Git push **(IJ: Ctrl+Shift+K)** |
+| `Space gf` | Normal | Git fetch (popup: `u` = from upstream, `a` = all remotes) |
+| `Space gm` | Normal | Git merge (popup: `m` = merge branch you pick) |
+| `Space gb` | Normal | Telescope branch picker, recent first (Enter = checkout) **(IJ: Ctrl+Shift+`)** |
 
 ### Diffview
 
@@ -155,7 +160,8 @@
 | `Space hs` | Normal/Visual | Stage hunk |
 | `Space hr` | Normal/Visual | Reset hunk |
 | `Space hS` | Normal | Stage entire buffer |
-| `Space hR` | Normal | Reset entire buffer |
+| `Space hR` | Normal | Reset entire buffer (unstaged changes only) |
+| `Space hX` | Normal | Rollback file to HEAD, staged + unstaged **(IJ: Ctrl+Alt+Z / Rollback)** |
 | `Space hu` | Normal | Undo stage hunk |
 | `Space hp` | Normal | Preview hunk |
 | `Space hb` | Normal | Blame line **(IJ: Annotate/Git Blame)** |
@@ -164,13 +170,18 @@
 | `Space hD` | Normal | Diff this ~ (against last commit) |
 | `ih` | Operator/Visual | Select hunk (text object) |
 
-## Treesitter Incremental Selection
+## Smart Select (Extend/Shrink Selection)
+
+Uses Neovim 0.12's built-in treesitter node selection (`:h v_an`); falls back to LSP selection range when no parser is available.
+
+Works with **either** Option key: right Option sends real Meta (`<A-k>`/`<A-j>`), while left Option composes `∆`/`º` on the German layout — both are mapped.
 
 | Shortcut | Mode | Action |
 |---|---|---|
-| `Alt+w` | Normal | Init selection **(IJ: Ctrl+W expand)** |
-| `Alt+w` | Visual | Expand selection |
-| `Alt+Shift+w` | Visual | Shrink selection **(IJ: Ctrl+Shift+W)** |
+| `Option+Up` / `Option+k` | Normal | Select node under cursor **(IJ: Option+Up extend)** |
+| `Option+Up` / `Option+k` | Visual | Expand selection to parent node |
+| `Option+Down` / `Option+j` | Visual | Shrink selection back **(IJ: Option+Down shrink)** |
+| `]n` / `[n` | Visual | Select next / previous sibling node |
 
 ## Trouble (Diagnostics Panel)
 
@@ -249,6 +260,7 @@
 |---|---|---|
 | `Space wr` | Normal | Restore session for cwd |
 | `Space ws` | Normal | Save session |
+| `Space wf` | Normal | Find session (picker for all saved sessions) |
 
 ## Which-Key
 

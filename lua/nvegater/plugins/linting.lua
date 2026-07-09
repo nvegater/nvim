@@ -18,7 +18,10 @@ return {
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
       group = lint_augroup,
       callback = function()
-        lint.try_lint()
+        -- ignore_errors: a broken/missing linter must never error inside the
+        -- autocmd — that aborts things like session restores mid-flight.
+        -- <leader>l still reports linter errors for debugging.
+        lint.try_lint(nil, { ignore_errors = true })
       end,
     })
 
