@@ -54,6 +54,28 @@ return {
         gs.diffthis("~")
       end, "Diff this ~")
 
+      -- PR mode: gutter signs show ALL changes vs the default branch (like IntelliJ PR view),
+      -- not just uncommitted ones. <leader>hM goes back to normal (signs vs index).
+      map("n", "<leader>hm", function()
+        local dir = vim.fn.expand("%:p:h")
+        local branch = vim.fn.systemlist({ "git", "-C", dir, "symbolic-ref", "--quiet", "--short", "refs/remotes/origin/HEAD" })[1]
+        if vim.v.shell_error ~= 0 or not branch or branch == "" then
+          branch = "origin/main"
+        end
+        local mb = vim.fn.systemlist({ "git", "-C", dir, "merge-base", branch, "HEAD" })[1]
+        if vim.v.shell_error ~= 0 or not mb or mb == "" then
+          vim.notify("Gitsigns PR mode: could not find merge-base with " .. branch, vim.log.levels.ERROR)
+          return
+        end
+        gs.change_base(mb, true)
+        vim.notify("Gitsigns: PR mode — signs show changes vs " .. branch)
+      end, "PR mode: signs vs default branch")
+
+      map("n", "<leader>hM", function()
+        gs.change_base(nil, true)
+        vim.notify("Gitsigns: normal mode — signs show uncommitted changes")
+      end, "Normal mode: signs vs index")
+
       -- Text object
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "Gitsigns select hunk")
     end,

@@ -87,6 +87,15 @@ return {
 		local keymap = vim.keymap
 		keymap.set("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open Diffview" })
 		keymap.set("n", "<leader>gD", "<cmd>DiffviewClose<CR>", { desc = "Close Diffview" })
+		-- PR view: file panel lists only the files changed vs the default branch (merge-base),
+		-- exactly what a GitHub PR diff shows
+		keymap.set("n", "<leader>gP", function()
+			local branch = vim.fn.systemlist({ "git", "symbolic-ref", "--quiet", "--short", "refs/remotes/origin/HEAD" })[1]
+			if vim.v.shell_error ~= 0 or not branch or branch == "" then
+				branch = "origin/main"
+			end
+			vim.cmd("DiffviewOpen " .. branch .. "...HEAD")
+		end, { desc = "Diffview: PR changes vs default branch" })
 		keymap.set("n", "<leader>gh", "<cmd>DiffviewFileHistory<CR>", { desc = "Open file history" })
 		keymap.set("n", "<leader>gH", "<cmd>DiffviewFileHistory %<CR>", { desc = "Open current file history" })
 	end,
