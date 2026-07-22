@@ -30,6 +30,18 @@ return {
 		telescope.setup({
 			defaults = {
 				path_display = { "absolute" },
+				vimgrep_arguments = {
+					"rg",
+					"--color=never",
+					"--no-heading",
+					"--with-filename",
+					"--line-number",
+					"--column",
+					"--smart-case",
+					"--hidden", -- search hidden files (.env etc.); ~/.ignore un-ignores gitignored .env files
+					"--glob",
+					"!**/.git/*",
+				},
 				mappings = {
 					i = {
 						["<C-k>"] = actions.move_selection_previous, -- move to prev result
@@ -39,6 +51,11 @@ return {
 						["<S-CR>"] = actions.select_vertical, -- Opens in vertical split
 						["<C-S-CR>"] = actions.select_horizontal, -- Opens in horizontal split
 					},
+				},
+			},
+			pickers = {
+				find_files = {
+					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 				},
 			},
 			extensions = {
